@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{ .Title }}</title>
+        <title>{{ block "title" . }} SecretVault {{ end }}</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
             tailwind.config = {
@@ -16,32 +16,56 @@
         />
     </head>
     <body
-        class="min-h-screen flex flex-col items-center justify-center p-4 bg-base-200 text-base-content transition-all duration-300"
+        class="min-h-screen flex flex-col bg-base-200 text-base-content transition-all duration-300"
     >
-        <header
-            class="w-full max-w-4xl flex justify-between items-center py-4 px-6"
-        >
-            <h1 class="text-2xl font-bold text-primary">🧊 SecretVault</h1>
-            <label class="swap swap-rotate">
-                <input type="checkbox" class="theme-controller" value="dark" />
-                <svg
-                    class="swap-on fill-current w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
+        <!-- Navbar -->
+        <header class="navbar bg-base-100 shadow">
+            <div class="flex-1">
+                <a href="/" class="text-xl font-bold text-primary"
+                    >🧊 SecretVault</a
                 >
-                    <path d="M5.64 17.657l..."></path>
-                    <!-- Moon icon -->
-                </svg>
-                <svg
-                    class="swap-off fill-current w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                >
-                    <path d="M12 4V2M6.34 6.34..."></path>
-                    <!-- Sun icon -->
-                </svg>
-            </label>
+            </div>
+            <div class="flex-none gap-2">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/secret">Vault</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <label class="swap swap-rotate">
+                    <input
+                        type="checkbox"
+                        class="theme-controller"
+                        value="dark"
+                    />
+                    <svg
+                        class="swap-on fill-current w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M5.64 17.657..."></path>
+                    </svg>
+                    <svg
+                        class="swap-off fill-current w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M12 4V2M6.34 6.34..."></path>
+                    </svg>
+                </label>
+            </div>
         </header>
-        <main class="w-full max-w-2xl">{{ embed }}</main>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 max-w-4xl w-full mx-auto">
+            {{ block "content" . }}{{ end }}
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+            <aside>
+                <p>© 2025 SecretVault. All rights reserved.</p>
+            </aside>
+        </footer>
     </body>
 </html>

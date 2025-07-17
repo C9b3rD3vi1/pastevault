@@ -1,0 +1,163 @@
+{{ define "title" }}About - SecretVault{{ end }} {{ define "content" }}
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<section class="space-y-12">
+    <!-- About Section -->
+    <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+        <h1 class="text-4xl font-bold mb-4">About SecretVault</h1>
+        <p class="text-lg leading-relaxed">
+            <strong>SecretVault</strong> is a secure, privacy-first app for
+            sharing sensitive data via expiring links. Designed for simplicity,
+            speed, and security.
+        </p>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="zoom-in-up">
+        <div class="card bg-base-200 shadow-md">
+            <div class="card-body">
+                <h2 class="card-title text-primary">Why SecretVault?</h2>
+                <ul class="list-disc list-inside text-base">
+                    <li>One-time access to secrets</li>
+                    <li>No permanent storage</li>
+                    <li>Simple, fast, and open-source</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card bg-base-200 shadow-md">
+            <div class="card-body">
+                <h2 class="card-title text-primary">Tech Stack</h2>
+                <ul class="list-disc list-inside text-base">
+                    <li>Go (Fiber) for backend</li>
+                    <li>SQLite for lightweight storage</li>
+                    <li>Tailwind CSS + DaisyUI for UI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="text-center" data-aos="fade-up">
+        <h2 class="text-3xl font-bold mb-6">Meet the Developer</h2>
+        <div class="avatar online justify-center">
+            <div
+                class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+            >
+                <img
+                    src="https://avatars.githubusercontent.com/u/placeholder"
+                    alt="Developer Avatar"
+                />
+            </div>
+        </div>
+        <p class="text-xl mt-4 font-medium">Pelekingz Nickie</p>
+        <p class="text-base text-gray-500">
+            Cybersecurity Engineer & Go Developer
+        </p>
+        <p class="text-sm text-muted mt-1">
+            Passionate about privacy, security, and clean code.
+        </p>
+    </div>
+
+    <!-- Contact Section -->
+    <div
+        class="card bg-base-100 shadow mt-8 max-w-xl mx-auto"
+        data-aos="fade-up"
+    >
+        <div class="card-body">
+            <h2 class="card-title">Contact</h2>
+            <ul class="list-none space-y-1 text-base mt-2">
+                <li>
+                    <strong>Email:</strong>
+                    <a href="mailto:contact@secretvault.app" class="link"
+                        >contact@secretvault.app</a
+                    >
+                </li>
+                <li>
+                    <strong>GitHub:</strong>
+                    <a
+                        href="https://github.com/C9b3rD3vi1"
+                        class="link"
+                        target="_blank"
+                        >@C9b3rD3vi1</a
+                    >
+                </li>
+                <li>
+                    <strong>Website:</strong>
+                    <a
+                        href="https://cyberlock.vercel.app"
+                        class="link"
+                        target="_blank"
+                        >cyberlock.vercel.app</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="space-y-4" data-aos="fade-up">
+        <h2 class="text-2xl font-bold text-primary text-center">FAQs</h2>
+        <div class="collapse collapse-arrow bg-base-100 shadow">
+            <input type="checkbox" />
+            <div class="collapse-title font-medium">
+                How long are secrets stored?
+            </div>
+            <div class="collapse-content">
+                <p>
+                    Secrets are automatically deleted after they are viewed or
+                    after their expiration time.
+                </p>
+            </div>
+        </div>
+        <div class="collapse collapse-arrow bg-base-100 shadow">
+            <input type="checkbox" />
+            <div class="collapse-title font-medium">Is my data encrypted?</div>
+            <div class="collapse-content">
+                <p>
+                    Yes, secrets are stored encrypted in the database until
+                    viewed.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Changelog -->
+    <div data-aos="fade-up">
+        <h2 class="text-2xl font-bold text-primary text-center">Changelog</h2>
+        <ul class="list-disc list-inside text-sm max-w-xl mx-auto mt-4">
+            <li>
+                <strong>v1.0.0</strong> - Initial release with secret
+                creation/viewing.
+            </li>
+            <li>
+                <strong>v1.1.0</strong> - UI redesigned, dark mode added,
+                animations introduced.
+            </li>
+        </ul>
+    </div>
+
+    <!-- Privacy Policy -->
+    <div data-aos="fade-up">
+        <h2 class="text-2xl font-bold text-primary text-center">
+            Privacy Policy
+        </h2>
+        <p class="text-sm max-w-xl mx-auto text-center mt-4">
+            We do not track users or store personal data. All secrets are
+            automatically deleted after use, and no logs are kept. We respect
+            your privacy fully.
+        </p>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center">
+        <a href="/" class="btn btn-outline btn-primary mt-6">← Back to Home</a>
+    </div>
+</section>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+{{ end }}

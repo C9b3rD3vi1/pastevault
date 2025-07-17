@@ -13,12 +13,21 @@ func main() {
 
 	engine.Layout("layouts/base")
 
+	engine.Reload(true)
+
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
 
+	app.Static("/static", "./static")
+
 	// define handler routes
-	app.Get("/", handlers.SecretHandler)
+	app.Get("/", handlers.HomePageHandler)
+	app.Get("/dashboard", handlers.DashboardHandler)
+	app.Get("/error", handlers.ErrorPageHandler)
+	app.Get("/secret", handlers.CreateUserSecret)
+	app.Post("/secret", handlers.CreateUserSecret)
+	app.Get("/about", handlers.HandleAboutPage)
 
 	if err := app.Listen(":3000"); err != nil {
 		fmt.Println("Error starting the main server", err)

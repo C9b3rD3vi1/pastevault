@@ -82,7 +82,3 @@ func GetUserSecret(c *fiber.Ctx) error {
 		"Content": secret.Content,
 	})
 }
-
-func SecretHandler(c *fiber.Ctx) error {
-	return c.Render("pages/index", fiber.Map{})
-}
