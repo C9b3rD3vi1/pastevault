@@ -1,0 +1,17 @@
+{{ define "title" }}Secret Dashboard{{ end }} {{ define "content" }}
+<div class="card bg-base-100 shadow-xl p-6">
+    <h2 class="text-xl font-semibold mb-4">📜 Secrets You've Created</h2>
+    <ul class="space-y-3">
+        {{ range .Secrets }}
+        <li class="bg-base-200 p-3 rounded flex justify-between items-center">
+            <span class="truncate">{{ .ShortID }}</span>
+            <a href="/vault/{{ .ShortID }}" class="btn btn-sm btn-outline"
+                >View</a
+            >
+        </li>
+        {{ else }}
+        <li>No secrets found.</li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
