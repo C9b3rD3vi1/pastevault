@@ -2,12 +2,27 @@
 <div class="card bg-base-100 shadow-xl p-6">
     <h2 class="text-xl font-semibold mb-4">🔐 Share a Secret</h2>
     <form method="POST" action="/secret" class="space-y-4">
-        <textarea
-            name="content"
-            required
-            class="textarea textarea-bordered w-full"
-            placeholder="Enter your secret..."
-        ></textarea>
+        <div>
+            <label for="name" class="label">Name</label>
+            <input
+                type="text"
+                name="name"
+                required
+                class="input input-bordered w-full"
+                placeholder="Enter a name..."
+            />
+        </div>
+
+        <div>
+            <label for="content" class="label">Content</label>
+            <textarea
+                name="content"
+                required
+                class="textarea textarea-bordered w-full h-52"
+                placeholder="Enter your secret..."
+            ></textarea>
+        </div>
+
         <div>
             <label class="label">Expires In (Minutes)</label>
             <input
@@ -19,7 +34,18 @@
                 required
             />
         </div>
-        <button class="btn btn-primary w-full">Generate Secret Link</button>
+        <button class="btn btn-primary w-full" id="submitBtn">
+            <span class="loading loading-spinner hidden" id="spinner"></span>
+            <span id="btnText">Generate Secret Link</span>
+        </button>
     </form>
 </div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function () {
+        document.getElementById("submitBtn").disabled = true;
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("btnText").textContent = "Creating...";
+    });
+</script>
 {{ end }}

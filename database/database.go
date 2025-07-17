@@ -11,8 +11,8 @@ import (
 var DB *gorm.DB
 
 // initDB init database
-func initDB() (*gorm.DB, error) {
-	db, err := gorm.Open(sqlite.Open("secrets.db"), &gorm.Config{})
+func InitDB() (*gorm.DB, error) {
+	db, err := gorm.Open(sqlite.Open("database/secrets.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to the database:", err)
 		//return nil, err

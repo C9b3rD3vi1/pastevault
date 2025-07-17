@@ -8,9 +8,9 @@ import (
 
 type Secret struct {
 	gorm.Model
-	ID        int       `gorm:"primaryKey"`
-	Name      string    `gorm:"uniqueIndex"`
-	Password  string    `gorm:"uniqueIndex"`
+	ID        string `gorm:"primaryKey"`
+	Name      string
+	Password  string
 	Content   string    `gorm:"type:text"`
 	Viewed    bool      `gorm:"default:false"`
 	CreatedAt time.Time `gorm:"autoCreateTime"`

@@ -1,17 +1,28 @@
 {{ define "title" }}Secret Dashboard{{ end }} {{ define "content" }}
-<div class="card bg-base-100 shadow-xl p-6">
-    <h2 class="text-xl font-semibold mb-4">📜 Secrets You've Created</h2>
-    <ul class="space-y-3">
-        {{ range .Secrets }}
-        <li class="bg-base-200 p-3 rounded flex justify-between items-center">
-            <span class="truncate">{{ .ShortID }}</span>
-            <a href="/vault/{{ .ShortID }}" class="btn btn-sm btn-outline"
-                >View</a
+<div class="max-w-2xl mx-auto mt-8">
+    <div class="card bg-base-100 shadow-xl p-6">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+            📜 Secrets You've Created
+        </h2>
+
+        <ul class="space-y-3">
+            {{ range .Secrets }}
+            <li
+                class="bg-base-200 p-3 rounded-lg flex justify-between items-center"
             >
-        </li>
-        {{ else }}
-        <li>No secrets found.</li>
-        {{ end }}
-    </ul>
+                <div class="text-sm font-mono truncate w-3/4" title="{{ .ID }}">
+                    {{ .ID }}
+                </div>
+                <a href="/secret/{{ .ID }}" class="btn btn-sm btn-outline">
+                    View
+                </a>
+            </li>
+            {{ else }}
+            <li class="text-center text-base-content text-opacity-70 py-4">
+                You haven't created any secrets yet.
+            </li>
+            {{ end }}
+        </ul>
+    </div>
 </div>
 {{ end }}
