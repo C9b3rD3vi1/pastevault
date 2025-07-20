@@ -50,6 +50,7 @@ func ErrorPageHandler(c *fiber.Ctx) error {
 	return c.Render("pages/error", fiber.Map{})
 }
 
+// homepage hanlder
 func HandleAboutPage(c *fiber.Ctx) error {
 	return c.Render("pages/about", fiber.Map{})
 }
