@@ -42,7 +42,7 @@ To run pastevault locally, follow these steps:
    go run main.go
    ```
 
-4. Access the app at http://localhost:8080
+4. Access the app at http://localhost:3000
 
 ## Usage
 
@@ -70,6 +70,7 @@ pastevault is licensed under the MIT License. See the [LICENSE](LICENSE) file fo
 ## Project in action
 
 ![homepage](./images/homepage.png)
+![dashboard](./images/vault_dash.png)
 
 ## Code
 

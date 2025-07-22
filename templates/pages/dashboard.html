@@ -1,28 +1,125 @@
-{{ define "title" }}Secret Dashboard{{ end }} {{ define "content" }}
-<div class="max-w-2xl mx-auto mt-8">
-    <div class="card bg-base-100 shadow-xl p-6">
-        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-            📜 Secrets You've Created
-        </h2>
+{{ define "title" }}Secret Dashboard{{ end }}
 
-        <ul class="space-y-3">
-            {{ range .Secrets }}
-            <li
-                class="bg-base-200 p-3 rounded-lg flex justify-between items-center"
-            >
-                <div class="text-sm font-mono truncate w-3/4" title="{{ .ID }}">
-                    {{ .ID }}
-                </div>
-                <a href="/secret/{{ .ID }}" class="btn btn-sm btn-outline">
-                    View
-                </a>
-            </li>
-            {{ else }}
-            <li class="text-center text-base-content text-opacity-70 py-4">
-                You haven't created any secrets yet.
-            </li>
-            {{ end }}
-        </ul>
-    </div>
-</div>
+{{ define "content" }}
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <title>Secret Vault</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.3/dist/full.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-green-300 font-mono p-6">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold tracking-widest">🧪 Secret Vault</h1>
+    <select id="themePicker" class="select select-bordered select-sm">
+      <option value="cyberpunk">Cyberpunk</option>
+      <option value="synthwave">Synthwave</option>
+      <option value="dracula">Dracula</option>
+      <option value="night">Night</option>
+    </select>
+  </div>
+
+  <!-- Search -->
+  <div class="mb-4">
+    <input type="text" placeholder="Search secrets..." class="input input-bordered w-full" oninput="filterSecrets(this.value)">
+  </div>
+
+  <!-- Toasts -->
+  {{ if .toast_success }}
+  <div class="toast toast-top toast-end z-50">
+    <div class="alert alert-success text-sm">{{ .toast_success }}</div>
+  </div>
+  {{ end }}
+  {{ if .toast_error }}
+  <div class="toast toast-top toast-end z-50">
+    <div class="alert alert-error text-sm">{{ .toast_error }}</div>
+  </div>
+  {{ end }}
+
+  <!-- Secrets Table -->
+  <form method="POST" action="/bulk-delete">
+    <table class="table table-zebra w-full">
+      <thead>
+        <tr>
+          <th><input type="checkbox" onclick="toggleAll(this)"></th>
+          <th>ID</th>
+          <th>Created</th>
+          <th>Expires</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="secretList">
+        {{ range .Secrets }}
+        <tr>
+          <td><input type="checkbox" name="ids" value="{{ .ID }}"></td>
+          <td class="text-xs break-all">{{ .ID }}</td>
+          <td>{{ .CreatedAt.Format "02 Jan 06 15:04" }}</td>
+          <td><span class="countdown" data-expiry="{{ .ExpiresAt }}"></span></td>
+          <td class="flex flex-wrap gap-2">
+            <a href="/secret/{{ .ID }}" class="btn btn-sm btn-info">View</a>
+            <form method="POST" action="/secret/delete/{{ .ID }}" onsubmit="return confirm('Delete this secret?')" class="inline">
+              <button class="btn btn-sm btn-error" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+    <button class="btn btn-sm btn-outline btn-error mt-4" type="submit">Delete Selected</button>
+  </form>
+
+  <!-- Scripts -->
+  <script>
+    function filterSecrets(query) {
+      const rows = document.querySelectorAll("#secretList tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(query.toLowerCase()) ? "" : "none";
+      });
+    }
+
+    function toggleAll(source) {
+      document.querySelectorAll('input[name="ids"]').forEach(cb => cb.checked = source.checked);
+    }
+
+    function updateCountdowns() {
+      document.querySelectorAll(".countdown").forEach(el => {
+        const expiry = new Date(el.dataset.expiry);
+        const diff = expiry - new Date();
+        if (diff <= 0) {
+          el.textContent = "Expired";
+        } else {
+          const mins = Math.floor(diff / 60000);
+          const secs = Math.floor((diff % 60000) / 1000);
+          el.textContent = `${mins}m ${secs}s`;
+        }
+      });
+    }
+
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+  </script>
+
+  <!-- Theme Picker Logic -->
+  <script>
+    const themePicker = document.getElementById('themePicker');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themePicker.value = savedTheme;
+    }
+
+    themePicker.addEventListener('change', function () {
+      const selectedTheme = this.value;
+      document.documentElement.setAttribute('data-theme', selectedTheme);
+      localStorage.setItem('theme', selectedTheme);
+    });
+  </script>
+
+</body>
+</html>
 {{ end }}
