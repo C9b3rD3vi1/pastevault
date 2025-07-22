@@ -54,6 +54,7 @@ func CreateUserSecret(c *fiber.Ctx) error {
 	})
 }
 
+// Get user GetUserSecret by ID
 func GetUserSecret(c *fiber.Ctx) error {
 	id := c.Params("id")
 
