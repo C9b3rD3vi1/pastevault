@@ -23,6 +23,7 @@ Great for sharing secrets securely without email/chat history risks.
 To run pastevault locally, follow these steps:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/C9b3rD3vi1/pastevault.git
    ```
@@ -31,6 +32,7 @@ To run pastevault locally, follow these steps:
 
    ```bash
    cd pastevault
+
    go mod tidy
    ```
 
@@ -71,7 +73,7 @@ pastevault is licensed under the MIT License. See the [LICENSE](LICENSE) file fo
 
 ## Code
 
-``` go
+```go
 func GetUserSecret(c *fiber.Ctx) error {
 	id := c.Params("id")
 
