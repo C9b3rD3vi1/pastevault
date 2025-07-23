@@ -181,6 +181,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/my-image:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/pastevault:latest
 
 ```
