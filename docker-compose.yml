@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  pastevault:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pastevault-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app  
+      - air_tmp:/tmp # prevent rebuild every time     # For live reload with air
+    
+    command: ["air", "-c", ".air.toml"]
+    
+volumes:
+  air_tmp:

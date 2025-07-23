@@ -72,6 +72,11 @@ pastevault is licensed under the MIT License. See the [LICENSE](LICENSE) file fo
 ![homepage](./images/homepage.png)
 ![dashboard](./images/vault_dash.png)
 
+*** Container image***
+*** Dockerfile***
+![Container image on docker_hub](./images/dockerimage.png)
+
+
 ## Code
 
 ```go

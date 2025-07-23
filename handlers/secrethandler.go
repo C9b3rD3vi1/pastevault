@@ -93,7 +93,7 @@ func GetUserSecret(c *fiber.Ctx) error {
 	})
 }
 
-
+// Delete user Secret
 func DeleteSecretHandler(c *fiber.Ctx) error {
 	id := c.Params("id")
 
