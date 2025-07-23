@@ -118,30 +118,32 @@ You can build and run this app using Docker.
 ```
 docker run -p 3000:3000 c9b3rd3vi1/pastevault
 ```
+
 ![Run docker](./images/run_docker.png)
 
 The app will be accessible at: http://localhost:3000
 
 ☁️ Push to Docker Hub
 
-# Tag the image
+## Tag the image
 
     docker tag pastevault c9b3rd3vi1/pastevault:latest
 
-# Push to Docker Hub
+## Push to Docker Hub
 
     docker push c9b3rd3vi1/pastevault:latest
 
 ⚙️ GitHub Actions CI/CD (Optional)
+
 This project supports automated Docker builds using GitHub Actions.
 
 To enable this:
 
 Create two GitHub Secrets:
 
-DOCKERHUB_USERNAME – Your Docker Hub username
+    DOCKERHUB_USERNAME – Your Docker Hub username
 
-DOCKERHUB_TOKEN – Create a Personal Access Token
+    DOCKERHUB_TOKEN – Create a Personal Access Token
 
 Add a GitHub Actions workflow (see .github/workflows/docker.yml in this repo for an example)
 
