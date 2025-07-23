@@ -72,10 +72,9 @@ pastevault is licensed under the MIT License. See the [LICENSE](LICENSE) file fo
 ![homepage](./images/homepage.png)
 ![dashboard](./images/vault_dash.png)
 
-*** Container image***
-*** Dockerfile***
+**_ Container image_**
+**_ Dockerfile_**
 ![Container image on docker_hub](./images/dockerimage.png)
-
 
 ## Code
 
@@ -101,4 +100,85 @@ func GetUserSecret(c *fiber.Ctx) error {
 		"Content": secret.Content,
 	})
 }
+```
+
+# 🐳 Docker
+
+You can build and run this app using Docker.
+
+🔧 Build the Docker Image
+
+```
+ docker build -t c9b3rd3vi1/pastevault .
+
+```
+
+🚀 Run the Docker Container
+
+```
+docker run -p 3000:3000 c9b3rd3vi1/pastevault
+```
+![Run docker](./images/run_docker.png)
+
+The app will be accessible at: http://localhost:3000
+
+☁️ Push to Docker Hub
+
+# Tag the image
+
+    docker tag pastevault c9b3rd3vi1/pastevault:latest
+
+# Push to Docker Hub
+
+    docker push c9b3rd3vi1/pastevault:latest
+
+⚙️ GitHub Actions CI/CD (Optional)
+This project supports automated Docker builds using GitHub Actions.
+
+To enable this:
+
+Create two GitHub Secrets:
+
+DOCKERHUB_USERNAME – Your Docker Hub username
+
+DOCKERHUB_TOKEN – Create a Personal Access Token
+
+Add a GitHub Actions workflow (see .github/workflows/docker.yml in this repo for an example)
+
+# CI/CD Pipeline
+
+```
+# Workflow file for Docker Push and Publish automation
+
+name: Docker Push and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/my-image:latest
+
 ```
