@@ -3,7 +3,7 @@ module github.com/C9b3rD3vi1/pastevault
 go 1.24.4
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.8
+	github.com/gofiber/fiber/v2 v2.52.9
 	github.com/google/uuid v1.6.0
 	github.com/znbang/gofiber-layout v0.0.1
 	gorm.io/driver/sqlite v1.6.0
